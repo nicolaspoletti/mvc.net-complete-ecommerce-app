@@ -1,0 +1,56 @@
+﻿@model Platform
+
+@{
+    ViewData["Title"] = "Update Platform";
+}
+
+<div class="row text"> 
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Update Cinema</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group text-center">
+                        <img id="PlatformLogoPreview" class="border-info rounded-circle" style="max-width: 150px"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PlatformLogoURL" class="control-label"></label>
+                        <input asp-for="PlatformLogoURL" class="form-control"/>
+                        <span asp-validation-for="PlatformLogoURL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PlatformName" class="control-label"></label>
+                        <input asp-for="PlatformName" class="form-control"/>
+                        <span asp-validation-for="PlatformName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PlatformDescription" class="control-label"></label>
+                        <input asp-for="PlatformDescription" class="form-control"/>
+                        <span asp-validation-for="PlatformDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right"/>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                    </div>
+                </form>          
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    $(document).ready(function() {
+        var output = document.getElementById('PlatformLogoPreview');
+        output.src = $("#PlatformLogoURL").val();
+    })
+
+    $("#PlatformLogoURL").on("change", function() {
+        var output = document.getElementById('PlatformLogoPreview');
+        output.src = $(this).val();
+    })
+    </script> 
+}

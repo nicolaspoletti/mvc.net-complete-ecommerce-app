@@ -1,0 +1,52 @@
+﻿@model Platform
+
+@{
+    ViewData["Title"] = "Platform Details";
+}
+
+<div class="row text"> 
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Details for @Model.PlatformName</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">               
+                        <div class="form-group text-center">
+                        <img id="PlatformPicturePreview" class="border-info rounded-circle" style="max-width: 150px" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PlatformLogoURL" class="control-label"></label>
+                        <input asp-for="PlatformLogoURL" class="form-control" readonly/>
+                        <span asp-validation-for="PlatformLogoURL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PlatformName" class="control-label"></label>
+                        <input asp-for="PlatformName" class="form-control" readonly/>
+                        <span asp-validation-for="PlatformName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PlatformDescription" class="control-label"></label>
+                        <input asp-for="PlatformDescription" class="form-control" readonly/>
+                        <span asp-validation-for="PlatformDescription" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                        }
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                    </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    $(document).ready(function() {
+        var output = document.getElementById('PlatformPicturePreview');
+        output.src = $("#PlatformLogoURL").val();
+    })
+    </script> 
+}
